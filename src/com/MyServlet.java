@@ -3,6 +3,8 @@ package com;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +27,20 @@ public class MyServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletConfig config = getServletConfig();
 		PrintWriter out = response.getWriter();
 		out.print("<h1>Hello World ! Service method</h1>");
+		out.print("<br><h1>Acessing config parameters</h1>");
+		out.print("sql = "+config.getInitParameter("sql"));
+		out.print("<br/>Message = "+config.getInitParameter("message"));
+		out.print("<br><h1>Acessing content parameters in MyServlet</h1>");
+		ServletContext  application = getServletContext();
+		out.print("Driver (MyServlet)= "+application.getInitParameter("driver"));
+		out.print("<br/>url (MyServlet) = "+application.getInitParameter("url"));
+		
 	}
-	*/
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
